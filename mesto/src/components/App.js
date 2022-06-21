@@ -1,19 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
 import '../index.css';
 
 
-function App() {
+const App = (props) => {
 
-class App extends React.component {
+/*   const[isEditAvatarPopupOpen,setIsEditAvatarPopupOpen] = React.useState(false);
   
-}  
+  function onEditAvatar() {
+  setIsEditAvatarPopupOpen(true);
+}; */
 
-  function handleEditAvatarClick() {
-    document.querySelector('.popup_type_change-avatar').classList.add("popup_opened");
-  }
+function handleEditAvatarClick() {
+  document.querySelector('.popup_type_change-avatar').classList.add("popup_opened");
+}
 
   function handleEditProfileClick() {
     document.querySelector('.popup_type_profile-edit').classList.add("popup_opened");
@@ -56,5 +58,6 @@ class App extends React.component {
   </>
   );
 }
+
 
 export default App;

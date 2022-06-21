@@ -10,7 +10,7 @@ function Main(props) {
     <div class="profile">
       <div class="profile__author">
         <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="фото автора" />
-        <div class="profile__overlay" onClick={props.onEditAvatar}></div>
+        <div class="profile__overlay"  onClick={props.onEditAvatar} ></div>
       </div>
       <div class="profile__info">
         <div class="profile__rename">
@@ -39,7 +39,6 @@ function Main(props) {
             <input
               class="popup__input popup__input_type_author"
               id="author-input"
-              name="name"
               type="text"
               minlength="2"
               maxlength="30"

@@ -3,7 +3,7 @@ import React from 'react';
 function PopupWithForm(props) {
 
 return (
-    <div className={`popup popup_type_${props.name}`} >
+    <div className={`popup popup_type_${props.name}`} /* isOpen={false} */>
     <div class="popup__container">
       <form
         id="formPlace"
