@@ -1,29 +1,28 @@
-import React from 'react';
-
-function PopupWithForm(props) {
+export default function PopupWithForm({ title, name, isOpen, children, button, onClose}) {
 
 return (
-    <div className={`popup popup_type_${props.name}`} /* isOpen={false} */>
-    <div class="popup__container">
+    <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} name={name}>
+    <div className="popup__container">
       <form
         id="formPlace"
-        className={`popup__form popup__form_type_${props.name}`}
+        className={`popup__form popup__form_type_${name}`}
         name="addPlaceForm"
-        novalidate
+        noValidate
       >
         <button
-          class="popup__button-close popup__button-close_type_create-place"
+          className="popup__button-close popup__button-close_type_create-place"
           aria-label="закрыть"
           type="button"
+          onClick={onClose}
         ></button>
-        <h3 class="popup__title">{props.title}</h3>
-        {props.children}
+        <h2 className="popup__title">{title}</h2>
+        {children}
         <button
-          class="popup__button-submit popup__button-submit_type_card"
+          className="popup__button-submit popup__button-submit_type_card"
           type="submit"
           value="Создать"
         >
-          Создать
+          {button}
         </button>
       </form>
     </div>
@@ -31,4 +30,3 @@ return (
 )
 }
 
-export default PopupWithForm;

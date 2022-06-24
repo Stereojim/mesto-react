@@ -1,11 +1,10 @@
 import React from 'react';
 
-
-
+//c вариантом подстановки года от системы
 function Footer() {
   return (
-    <footer class="footer">
-    <p class="footer__capture">&copy; 2022 Mesto Russia</p>
+    <footer className="footer">
+    <p className="footer__capture">&copy;  {new Date().getFullYear()} Mesto Russia</p>
   </footer>
   );
 }

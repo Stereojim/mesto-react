@@ -1,63 +1,86 @@
-import React, {useEffect, useState} from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import Main from './Main';
-import '../index.css';
+import React, { useEffect, useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import Main from "./Main";
+import AddPlacePopup from "./AppPlacePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
+import EditProfilePopup from "./EditProfilePopup";
+import "../index.css";
 
-
-const App = (props) => {
-
-/*   const[isEditAvatarPopupOpen,setIsEditAvatarPopupOpen] = React.useState(false);
-  
-  function onEditAvatar() {
-  setIsEditAvatarPopupOpen(true);
-}; */
-
-function handleEditAvatarClick() {
-  document.querySelector('.popup_type_change-avatar').classList.add("popup_opened");
-}
-
-  function handleEditProfileClick() {
-    document.querySelector('.popup_type_profile-edit').classList.add("popup_opened");
-  }
+const App = () => {
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
 
   function handleAddPlaceClick() {
-    document.querySelector('.popup_type_create-place').classList.add("popup_opened");
+    setIsAddPlacePopupOpen(true);
   }
 
+  function handleEditAvatarClick() {
+    setisEditAvatarPopupOpen(true);
+  }
+
+  function handleEditProfileClick() {
+    setisEditProfilePopupOpen(true);
+  }
+
+function closeAllPopups () {
+  setisEditProfilePopupOpen(false);
+  setisEditAvatarPopupOpen(false);
+  setIsAddPlacePopupOpen(false);
+}
+
+/*   function handleEditAvatarClick() {
+    document
+      .querySelector(".popup_type_change-avatar")
+      .classList.add("popup_opened");
+  } */
 
   return (
     <>
-    
-    <body class="body">
-    <div class="page">
-    <Header />
-    <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} />
+      <div className="body">
+        <div className="page">
+          <Header />
+          <Main
+            onEditAvatar={handleEditAvatarClick}
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick} 
+          />
 
-      <template id="placeCards" class="square-card">
-        <div class="card">
-          <img class="card__image" src="#" alt="" />
-          <h2 class="card__place-name"></h2>
-          <button
-            class="card__like-button"
-            type="button"
-            aria-label="поставить лайк"
-          ></button>
-          <span class="card__like-count"></span>
-          <button
-            class="card__remove-button"
-            type="button"
-            aria-label="удалить карточку"
-          ></button>
+          <template id="placeCards" className="square-card">
+            <div className="card">
+              <img className="card__image" src="#" alt="" />
+              <h2 className="card__place-name"></h2>
+              <button
+                className="card__like-button"
+                type="button"
+                aria-label="поставить лайк"
+              ></button>
+              <span className="card__like-count"></span>
+              <button
+                className="card__remove-button"
+                type="button"
+                aria-label="удалить карточку"
+              ></button>
+            </div>
+          </template>
+          <Footer />
+          <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          />
+          <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          />
+          <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          />
         </div>
-      </template>
-      <Footer />
-    </div>
-   
-  </body>
-  </>
+      </div>
+    </>
   );
-}
-
+};
 
 export default App;

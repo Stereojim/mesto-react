@@ -3,115 +3,120 @@ import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
 
 
-function Main(props) {
+export default function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+}) {
+
 
   return (
-    <main class="content">
-    <div class="profile">
-      <div class="profile__author">
-        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="фото автора" />
-        <div class="profile__overlay"  onClick={props.onEditAvatar} ></div>
+    <main className="content">
+    <div className="profile">
+      <div className="profile__author">
+        <img className="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="фото автора" />
+        <div className="profile__overlay"  onClick={onEditAvatar}></div>
       </div>
-      <div class="profile__info">
-        <div class="profile__rename">
-          <h1 class="profile__name"></h1>
+      <div className="profile__info">
+        <div className="profile__rename">
+          <h1 className="profile__name"></h1>
           <button
-            class="profile__edit-button"
+            className="profile__edit-button"
             aria-label="изменить"
             type="button"
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
           ></button>
         </div>
-        <p class="profile__profession"></p>
+        <p className="profile__profession"></p>
       </div>
       <button
-        class="profile__add-button"
+        className="profile__add-button"
         aria-label="добавить карточку"
         type="button"
-        onClick={props.onAddPlace}
+        onClick={onAddPlace}
+        
       ></button>
     </div>
 
-    <article class="elements"></article>
+    <article className="elements"></article>
 
-    <PopupWithForm name='profile-edit' title='Редактировать профиль'>
-          <label class="popup__label">
+    <PopupWithForm name='profile-edit' title='Редактировать профиль' button='Сохранить'  >
+          <label className="popup__label">
             <input
-              class="popup__input popup__input_type_author"
+              className="popup__input popup__input_type_author"
               id="author-input"
               type="text"
-              minlength="2"
-              maxlength="30"
+              minLength="2"
+              maxLength="30"
               required
               placeholder="Имя"
             />
-            <span id="author-input-error" class="popup__error"></span>
+            <span id="author-input-error" className="popup__error"></span>
           </label>
 
-          <label class="popup__label">
+          <label className="popup__label">
             <input
-              class="popup__input popup__input_type_profession"
+              className="popup__input popup__input_type_profession"
               name="description"
               id="profession-input"
               type="text"
-              minlength="2"
-              maxlength="200"
+              minLength="2"
+              maxLength="200"
               required
               placeholder="Профессия"
             />
-            <span id="profession-input-error" class="popup__error"></span>
+            <span id="profession-input-error" className="popup__error"></span>
           </label>
     </PopupWithForm>
 
-    <PopupWithForm name='create-place' title='Новое место'>
-          <label class="popup__label">
+{/*     <PopupWithForm name='create-place' title='Новое место' button='Создать' >
+          <label className="popup__label">
             <input
-              class="popup__input popup__input_type_place-name"
+              className="popup__input popup__input_type_place-name"
               name="place-name-input"
               id="place-name-input"
               type="text"
-              minlength="2"
-              maxlength="30"
+              minLength="2"
+              maxLength="30"
               required
               placeholder="Название"
             />
-            <span class="popup__error" id="place-name-input-error"></span>
+            <span className="popup__error" id="place-name-input-error"></span>
           </label>
 
-          <label class="popup__label">
+          <label className="popup__label">
             <input
-              class="popup__input popup__input_type_place-link"
+              className="popup__input popup__input_type_place-link"
               name="place-link-input"
               id="place-link-input"
               type="url"
               required
               placeholder="Ссылка на картинку"
             />
-            <span class="popup__error" id="place-link-input-error"></span>
+            <span className="popup__error" id="place-link-input-error"></span>
           </label>
          
-    </PopupWithForm>
+    </PopupWithForm> */}
 
     <PopupWithForm name='delete-card' title='Вы уверены?'>
     </PopupWithForm>
 
-    <PopupWithForm name='change-avatar' title='Обновить аватар'>
-          <label class="popup__label">
+{/*     <PopupWithForm name='change-avatar' title='Обновить аватар' button='Сохранить'>
+          <label className="popup__label">
             <input
-              class="popup__input popup__input_type_link"
+              className="popup__input popup__input_type_link"
               name="avatarLink-input"
               id="avatarLink-input"
               type="url"
               required
               placeholder="Ссылка на картинку"
             />
-            <span class="popup__error" id="avatarLink-input-error"></span>
+            <span className="popup__error" id="avatarLink-input-error"></span>
           </label>
-    </PopupWithForm>
+    </PopupWithForm> */}
 
     <ImagePopup />
   </main>
   );
 }
   
-export default Main;
