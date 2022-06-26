@@ -1,27 +1,31 @@
-import React from "react";
-import ImagePopup from "./ImagePopup";
-import PopupWithForm from "./PopupWithForm";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import { api } from "../utils/api.js";
 
-function Main({
-  onEditAvatar,
-  onEditProfile,
-  onAddPlace,
-  onCardClick,
-  closeAllPopups,
-  cards,
-  userAvatar,
-  userDescription,
-  userName,
-}) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards }) {
+  const [userName, setUserName] = useState([]);
+  const [userDescription, setUserDescription] = useState([]);
+  const [userAvatar, setUserAvatar] = useState([]);
+
+  useEffect(() => {
+    api
+      .getProfile()
+      .then((data) => {
+        setUserName(data.name);
+        setUserDescription(data.about);
+        setUserAvatar(data.avatar);
+      })
+      .catch((err) => console.log("засада: " + err));
+  }, []);
+
   return (
     <main className="content">
       <div className="profile">
         <div className="profile__author">
           <img
             className="profile__avatar"
-            alt='профиль пользователя'
-            style={{ backgroundImage: `url(${userAvatar})` }}
+            alt="профиль пользователя"
+            src={userAvatar}
           />
           <div className="profile__overlay" onClick={onEditAvatar}></div>
         </div>
@@ -44,14 +48,6 @@ function Main({
           onClick={onAddPlace}
         ></button>
       </div>
-
-      <PopupWithForm
-        name="delete-card"
-        title="Вы уверены?"
-        onClose={closeAllPopups}
-      ></PopupWithForm>
-
-      <ImagePopup />
 
       <article className="elements">
         {cards.map((card, i) => (

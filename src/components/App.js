@@ -14,10 +14,6 @@ function App() {
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
   
-
-  const [userName, setUserName] = useState([]);
-  const [userDescription, setUserDescription] = useState([]);
-  const [userAvatar, setUserAvatar] = useState([]);
   const [data, setData] = useState([]);
 
   const [selectedCard, setSelectedCard] = useState(null);
@@ -44,14 +40,6 @@ function App() {
   }
 
   useEffect(() => {
-    api.getProfile().then((data) => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    });
-  });
-
-  useEffect(() => {
     api
       .getInitialCards()
       .then((card) => {
@@ -70,9 +58,9 @@ function App() {
             onEditAvatar={handleEditAvatarClick}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
-            userAvatar={userAvatar}
+/*             userAvatar={userAvatar}
             userDescription={userDescription}
-            userName={userName}
+            userName={userName} */
             onCardClick={handleCardClick}
           ></Main>
 

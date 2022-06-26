@@ -1,7 +1,7 @@
 
 import PopupWithForm from "./PopupWithForm";
 
-export default function isEditAvatarPopup({ isOpen, onClose }) {
+export default function EditAvatarPopup({ isOpen, onClose }) {
   return (
     <PopupWithForm
       title="Обновить аватар"

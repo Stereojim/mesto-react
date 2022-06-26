@@ -1,7 +1,7 @@
 
 import PopupWithForm from "./PopupWithForm";
 
-export default function isEditProfilePopup({ isOpen, onClose }) {
+export default function EditProfilePopup({ isOpen, onClose }) {
   return (
     <PopupWithForm
       title="Редактировать профиль"

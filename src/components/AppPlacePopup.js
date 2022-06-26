@@ -1,7 +1,7 @@
 
 import PopupWithForm from "./PopupWithForm";
 
-export default function isAddPlacePopup({ isOpen, onClose }) {
+export default function AddPlacePopup({ isOpen, onClose }) {
   return (
     <PopupWithForm
       title="Новое место"
