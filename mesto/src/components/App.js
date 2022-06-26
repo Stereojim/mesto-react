@@ -7,21 +7,24 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import "../index.css";
 import { api } from "../utils/Api.js";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
 
   const [userName, setUserName] = useState([]);
   const [userDescription, setUserDescription] = useState([]);
   const [userAvatar, setUserAvatar] = useState([]);
+  const [data, setData] = useState([]);
 
-  /*   const [author, setAuthor] = useState({
-        name: '',
-        about: '',
-        avatar: ''
-    }); */
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  function handleCardClick(props) {
+    setSelectedCard(props);
+  }
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
@@ -37,6 +40,8 @@ function App() {
     setisEditProfilePopupOpen(false);
     setisEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsImagePopupOpen(false);
+    setSelectedCard(null);
   }
 
   useEffect(() => {
@@ -47,24 +52,14 @@ function App() {
     });
   });
 
-  const [data, setData] = useState([]);
   useEffect(() => {
     api
       .getInitialCards()
-      .then((data) => {
-        setData(data);
+      .then((card) => {
+        setData(card);
       })
       .catch((err) => console.log("засада: " + err));
   }, []);
-
-  /*    React.useEffect(() => {
-    Promise.all([api.getProfile(), api.getInitialCards()])
-      .then(([author, cards]) => {
-        setAuthor(author);
-        setCards(cards);
-      })
-      .catch((err) => console.log("ошибка: " + err));
-  }, []); */
 
   return (
     <>
@@ -79,6 +74,7 @@ function App() {
             userAvatar={userAvatar}
             userDescription={userDescription}
             userName={userName}
+            onCardClick={handleCardClick}
           ></Main>
 
           <Footer />
@@ -94,6 +90,7 @@ function App() {
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
           />
+          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>
       </div>
     </>

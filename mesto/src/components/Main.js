@@ -7,6 +7,7 @@ function Main({
   onEditAvatar,
   onEditProfile,
   onAddPlace,
+  onCardClick,
   closeAllPopups,
   cards,
   userAvatar,
@@ -16,7 +17,7 @@ function Main({
   return (
     <main className="content">
       <div className="profile">
-                <div className="profile__author">
+        <div className="profile__author">
           <img
             className="profile__avatar"
             style={{ backgroundImage: `url(${userAvatar})` }}
@@ -40,7 +41,7 @@ function Main({
           aria-label="добавить карточку"
           type="button"
           onClick={onAddPlace}
-        ></button> 
+        ></button>
       </div>
 
       <PopupWithForm
@@ -53,7 +54,7 @@ function Main({
 
       <article className="elements">
         {cards.map((card, i) => (
-          <Card card={card} key={i}></Card>
+          <Card card={card} key={i} onCardClick={onCardClick}></Card>
         ))}
       </article>
     </main>
