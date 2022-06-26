@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { api } from "../utils/api.js";
 
-function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards }) {
-  const [userName, setUserName] = useState([]);
-  const [userDescription, setUserDescription] = useState([]);
-  const [userAvatar, setUserAvatar] = useState([]);
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+  const [userName, setUserName] = useState();
+  const [userDescription, setUserDescription] = useState();
+  const [userAvatar, setUserAvatar] = useState();
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api
@@ -14,6 +15,15 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards }) {
         setUserName(data.name);
         setUserDescription(data.about);
         setUserAvatar(data.avatar);
+      })
+      .catch((err) => console.log("засада: " + err));
+  }, []);
+
+  useEffect(() => {
+    api
+      .getInitialCards()
+      .then((cards) => {
+        setCards(cards);
       })
       .catch((err) => console.log("засада: " + err));
   }, []);

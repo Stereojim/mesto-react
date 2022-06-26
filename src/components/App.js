@@ -14,7 +14,7 @@ function App() {
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
   
-  const [data, setData] = useState([]);
+/*   const [data, setData] = useState([]); */
 
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -39,14 +39,14 @@ function App() {
     setSelectedCard(null);
   }
 
-  useEffect(() => {
+/*   useEffect(() => {
     api
       .getInitialCards()
       .then((card) => {
         setData(card);
       })
       .catch((err) => console.log("засада: " + err));
-  }, []);
+  }, []); */
 
   return (
     <>
@@ -54,13 +54,10 @@ function App() {
         <div className="page">
           <Header />
           <Main
-            cards={data}
+    /*         cards={data} */
             onEditAvatar={handleEditAvatarClick}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
-/*             userAvatar={userAvatar}
-            userDescription={userDescription}
-            userName={userName} */
             onCardClick={handleCardClick}
           ></Main>
 
