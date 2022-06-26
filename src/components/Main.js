@@ -20,6 +20,7 @@ function Main({
         <div className="profile__author">
           <img
             className="profile__avatar"
+            alt='профиль пользователя'
             style={{ backgroundImage: `url(${userAvatar})` }}
           />
           <div className="profile__overlay" onClick={onEditAvatar}></div>

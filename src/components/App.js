@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
@@ -6,14 +6,14 @@ import AddPlacePopup from "./AppPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import "../index.css";
-import { api } from "../utils/Api.js";
+import { api } from "../utils/api.js";
 import ImagePopup from "./ImagePopup";
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
-  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  
 
   const [userName, setUserName] = useState([]);
   const [userDescription, setUserDescription] = useState([]);
@@ -40,7 +40,6 @@ function App() {
     setisEditProfilePopupOpen(false);
     setisEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setIsImagePopupOpen(false);
     setSelectedCard(null);
   }
 

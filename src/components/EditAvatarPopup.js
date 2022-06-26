@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import PopupWithForm from "./PopupWithForm";
 
 export default function isEditAvatarPopup({ isOpen, onClose }) {

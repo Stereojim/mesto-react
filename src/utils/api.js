@@ -78,8 +78,6 @@ class Api {
     return Promise.reject(`Ошибка ${res.status}`);
   }
 
-  /* .then(res => res.ok ? res.json() : Promise.reject(res.status)) */
-  // другие методы работы с API
 }
 
 export const api = new Api({
