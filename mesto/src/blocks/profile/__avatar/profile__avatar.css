@@ -2,16 +2,17 @@
 border-radius: 50%;
 transition: ease-in-out 0.3s;
 position: absolute;
-width: 100%;
+background-size: cover;
+background-position: center;
 height: 100%;
+width: 100%;
 margin: auto;
-object-fit: cover;
 }
 
 
 .profile__avatar:hover {
 cursor: pointer;
 opacity: 0.2;
-background-size: 50%;
+background-size: 50%; 
 background-repeat: no-repeat;
 }
