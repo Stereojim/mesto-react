@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { api } from "../utils/api.js";
 
+
+/* пардон! убрал то, что это массив, а что строка указать забыл */
+
 function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
-  const [userName, setUserName] = useState();
-  const [userDescription, setUserDescription] = useState();
-  const [userAvatar, setUserAvatar] = useState();
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
