@@ -20,7 +20,14 @@ function App() {
 
   const [selectedCard, setSelectedCard] = useState(null);
 
-
+  function handleUpdateUser(user) {
+    api.editProfile(user.name, user.about)
+      .then(res => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err))
+  }
 
   function handleCardClick(props) {
     setSelectedCard(props);
@@ -55,7 +62,14 @@ function App() {
       });
   }, []);
 
-
+  function handleUpdateAvatar(card) {
+    api.editProfileImage(card.avatar)
+    .then(res => {
+      setCurrentUser(res);
+      closeAllPopups();
+    })
+    .catch(err => console.log(err))
+}
 
   return (
 
@@ -80,10 +94,12 @@ function App() {
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
           />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>

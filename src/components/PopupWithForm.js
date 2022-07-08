@@ -1,4 +1,4 @@
-export default function PopupWithForm({ title, name, isOpen, children, button, onClose}) {
+export default function PopupWithForm({ title, name, isOpen, children, button, onClose, onSubmit}) {
 
 return (
     <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} name={name}>
@@ -8,6 +8,7 @@ return (
         className={`popup__form popup__form_type_${name}`}
         name="addPlaceForm"
         noValidate
+        onSubmit={onSubmit}
       >
         <button
           className="popup__button-close popup__button-close_type_create-place"

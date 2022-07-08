@@ -1,7 +1,40 @@
 
 import PopupWithForm from "./PopupWithForm";
+import React, { useState, useEffect } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
-export default function EditProfilePopup({ isOpen, onClose }) {
+// Подписка на контекст
+const currentUser = React.useContext(CurrentUserContext);
+
+const [name, setName] = useState('');
+const [description, setDescription] = useState('');
+
+useEffect(() => {
+  setName(currentUser.name);
+  setDescription(currentUser.about);
+}, [currentUser]); 
+
+function handleUserName(event) {
+  setName(event.target.value)
+}
+
+function handleUserDescription(event) {
+  setDescription(event.target.value)
+}
+
+
+function handleSubmit(e) {
+  // Запрещаем браузеру переходить по адресу формы
+  e.preventDefault();
+
+  // Передаём значения управляемых компонентов во внешний обработчик
+  onUpdateUser({
+    name: name,
+    about: description,
+  });
+} 
+
   return (
     <PopupWithForm
       title="Редактировать профиль"
@@ -9,6 +42,7 @@ export default function EditProfilePopup({ isOpen, onClose }) {
       isOpen={isOpen}
       button="Изменить"
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
      <label className="popup__label">
             <input
@@ -19,6 +53,8 @@ export default function EditProfilePopup({ isOpen, onClose }) {
               maxLength="30"
               required
               placeholder="Имя"
+              onChange={handleUserName}
+            
             />
             <span id="author-input-error" className="popup__error"></span>
           </label>
@@ -33,6 +69,8 @@ export default function EditProfilePopup({ isOpen, onClose }) {
               maxLength="200"
               required
               placeholder="Профессия"
+              onChange={handleUserDescription}
+           
             />
             <span id="profession-input-error" className="popup__error"></span>
           </label>
