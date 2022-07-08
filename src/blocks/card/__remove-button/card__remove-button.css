@@ -15,6 +15,7 @@
   -webkit-filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 1));
   filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 1));
   cursor: pointer;
+  display: none;
 }
 
 .card__remove-button:hover {

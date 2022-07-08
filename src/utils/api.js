@@ -77,7 +77,6 @@ class Api {
     }
     return Promise.reject(`Ошибка ${res.status}`);
   }
-
 }
 
 export const api = new Api({
@@ -88,4 +87,3 @@ export const api = new Api({
     "Content-Type": "application/json",
   },
 });
-

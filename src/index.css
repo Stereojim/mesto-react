@@ -46,3 +46,4 @@
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__capture/footer__capture.css);
 @import url(./blocks/card/__remove-button/card__remove-button.css);
+@import url(./blocks/card/__remove-button/_visible/card__remove-button_visible.css);

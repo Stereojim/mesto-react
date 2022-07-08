@@ -8,15 +8,19 @@ import EditProfilePopup from "./EditProfilePopup";
 import "../index.css";
 import { api } from "../utils/api.js";
 import ImagePopup from "./ImagePopup";
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
   
+  const [currentUser, setCurrentUser] = useState({});
 /*   const [data, setData] = useState([]); */
 
   const [selectedCard, setSelectedCard] = useState(null);
+
+
 
   function handleCardClick(props) {
     setSelectedCard(props);
@@ -39,26 +43,33 @@ function App() {
     setSelectedCard(null);
   }
 
-/*   useEffect(() => {
+
+  useEffect(() => {
     api
-      .getInitialCards()
-      .then((card) => {
-        setData(card);
+      .getProfile()
+      .then((data) => {
+        setCurrentUser(data);
       })
-      .catch((err) => console.log("засада: " + err));
-  }, []); */
+      .catch(console.log)
+      .finally(() => {
+      });
+  }, []);
+
+
 
   return (
-    <>
+
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
         <div className="page">
           <Header />
           <Main
-    /*         cards={data} */
+
             onEditAvatar={handleEditAvatarClick}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleCardClick}
+
           ></Main>
 
           <Footer />
@@ -77,7 +88,7 @@ function App() {
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>
       </div>
-    </>
+      </CurrentUserContext.Provider>
   );
 }
 
