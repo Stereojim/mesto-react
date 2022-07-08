@@ -1,52 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import Card from "./Card";
-import { api } from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  onCardClick,
+  cards,
+  onCardLike,
+  onCardDelete,
+}) {
   const currentUser = useContext(CurrentUserContext);
-  const [cards, setCards] = useState([]);
-
-  //Функция лайка карточки
-  function handleCardLike(card) {
-    //Проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
-    //переключатель лукасов (как должен выглядеть api changeLikeCardStatus из тз неизвестно)
-    !isLiked
-      ? api.addLike(card._id).then((newCard) => {
-          const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
-          setCards(newCards);
-        })
-      : api
-          .deleteLike(card._id)
-          .then((newCard) => {
-            const newCards = cards.map((c) =>
-              c._id === card._id ? newCard : c
-            );
-            setCards(newCards);
-          })
-
-          .catch((err) => console.log("засада: " + err));
-  }
-
-  function handleCardDelete(card) {
-    api
-      .deleteCard(card._id)
-      .then(() => {
-        setCards(cards.filter((item) => item._id !== card._id));
-      })
-      .catch((err) => console.log(err));
-  }
-
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => {
-        setCards(cards);
-      })
-      .catch((err) => console.log("засада: " + err));
-  }, []);
 
   return (
     <main className="content">
@@ -85,8 +50,8 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
             card={card}
             key={i}
             onCardClick={onCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
           ></Card>
         ))}
       </article>

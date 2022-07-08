@@ -1,34 +1,35 @@
-
 import PopupWithForm from "./PopupWithForm";
 import React, { useState, useEffect } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
 export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
 // Подписка на контекст
 const currentUser = React.useContext(CurrentUserContext);
 
+// стейты имени и описания
 const [name, setName] = useState('');
 const [description, setDescription] = useState('');
 
+// прописывание данных в стейты
 useEffect(() => {
   setName(currentUser.name);
   setDescription(currentUser.about);
 }, [currentUser]); 
 
+//использование данных инпута имени
 function handleUserName(event) {
   setName(event.target.value)
 }
 
+//использование данных инпута описания
 function handleUserDescription(event) {
   setDescription(event.target.value)
 }
 
-
+// перезаписывание данных в инпуты
 function handleSubmit(e) {
-  // Запрещаем браузеру переходить по адресу формы
   e.preventDefault();
-
-  // Передаём значения управляемых компонентов во внешний обработчик
   onUpdateUser({
     name: name,
     about: description,

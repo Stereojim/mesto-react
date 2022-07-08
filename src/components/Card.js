@@ -21,6 +21,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     isLiked ? "card__like-button_active" : ""
   }`;
 
+  //управление событиями
   const handleCardClick = () => {
     onCardClick(card);
   };
