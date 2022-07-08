@@ -55,6 +55,7 @@ function handleSubmit(e) {
               required
               placeholder="Имя"
               onChange={handleUserName}
+              value={name}
             
             />
             <span id="author-input-error" className="popup__error"></span>
@@ -71,6 +72,7 @@ function handleSubmit(e) {
               required
               placeholder="Профессия"
               onChange={handleUserDescription}
+              value={description}
            
             />
             <span id="profession-input-error" className="popup__error"></span>

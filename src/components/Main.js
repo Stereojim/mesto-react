@@ -45,10 +45,10 @@ function Main({
       </div>
 
       <article className="elements">
-        {cards.map((card, i) => (
+        {cards.map((item) => (
           <Card
-            card={card}
-            key={i}
+            card={item}
+            key={item._id}
             onCardClick={onCardClick}
             onCardLike={onCardLike}
             onCardDelete={onCardDelete}

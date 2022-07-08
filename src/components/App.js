@@ -9,16 +9,19 @@ import "../index.css";
 import { api } from "../utils/api.js";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import Confirmation from "../Confirmation";
 
 function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState({});
   const [cards, setCards] = useState([]);
 
-// получение изначальных карточек
+  // получение изначальных карточек
   useEffect(() => {
     api
       .getInitialCards()
@@ -50,20 +53,28 @@ function App() {
 
           .catch((err) => console.log("засада: " + err));
   }
-// функция удаления на карточке
+
+  // функция удаления на карточке
   function handleCardDelete(card) {
     api
-      .deleteCard(card._id)
+      .deleteCard(selectedCard._id)
       .then(() => {
-        setCards(cards.filter((item) => item._id !== card._id));
+        setCards(cards.filter((item) => item._id !== selectedCard._id));
+        closeAllPopups();
       })
       .catch((err) => console.log("засада: " + err));
   }
+  // вызов открытия подтверждения удаления
+  const handleClickCardDelete = (card) => {
+    setSelectedCard(card);
+    setIsConfirmationOpen(true);
+  };
 
-  // обработчики нажатий на странице
-  function handleCardClick(props) {
-    setSelectedCard(props);
-  }
+  // управление нажатием на карточку
+  const handleCardClick = (card) => {
+    setIsImagePopupOpen(true);
+    setSelectedCard(card);
+  };
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
@@ -83,6 +94,8 @@ function App() {
     setisEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
+    setIsImagePopupOpen(false);
+    setIsConfirmationOpen(false);
   }
 
   // получение данных о пользователе
@@ -116,7 +129,7 @@ function App() {
       })
       .catch((err) => console.log("засада: " + err));
   }
-// функция создания новой карточки
+  // функция создания новой карточки
   function handleAddPlaceSubmit(card) {
     api
       .addCard(card.name, card.link)
@@ -139,7 +152,7 @@ function App() {
             onCardClick={handleCardClick}
             cards={cards}
             onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardDelete={handleClickCardDelete}
           ></Main>
 
           <Footer />
@@ -158,7 +171,17 @@ function App() {
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
           />
-          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+          <ImagePopup
+            card={selectedCard}
+            isOpen={isImagePopupOpen}
+            onClose={closeAllPopups}
+          />
+
+          <Confirmation
+            isOpen={isConfirmationOpen}
+            onClose={closeAllPopups}
+            onSubmit={handleCardDelete}
+          />
         </div>
       </div>
     </CurrentUserContext.Provider>

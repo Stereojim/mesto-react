@@ -37,6 +37,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   return (
     <>
       <div className="card">
+        
         <img
           className="card__image"
           src={card.link}

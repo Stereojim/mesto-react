@@ -14,14 +14,13 @@ export default function PopupWithForm({
     >
       <div className="popup__container">
         <form
-          id="formPlace"
           className={`popup__form popup__form_type_${name}`}
           name="addPlaceForm"
           noValidate
           onSubmit={onSubmit}
         >
           <button
-            className="popup__button-close popup__button-close_type_create-place"
+            className="popup__button-close"
             aria-label="закрыть"
             type="button"
             onClick={onClose}
