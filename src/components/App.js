@@ -1,3 +1,4 @@
+//как корректно опубликовать страницу так и не догадался. ранее уже делали, вроде через deploy...выдает ошибки
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
