@@ -14,7 +14,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   }`;
 
   // проверили свои лайки на карточке
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
   //создали класс для видимости иконки лайка и функцию нажатия
   const cardLikeButtonClassName = `card__like-button ${
@@ -25,7 +25,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const handleCardClick = () => {
     onCardClick(card);
   };
-  
+
   const handleLikeClick = () => {
     onCardLike(card);
   };
@@ -35,30 +35,27 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   };
 
   return (
-    <>
-      <div className="card">
-        
-        <img
-          className="card__image"
-          src={card.link}
-          alt={card.name}
-          onClick={handleCardClick}
-        />
-        <h2 className="card__place-name">{card.name}</h2>
-        <button
-          className={cardLikeButtonClassName}
-          type="button"
-          aria-label="поставить лайк"
-          onClick={handleLikeClick}
-        ></button>
-        <span className="card__like-count">{card.likes.length}</span>
-        <button
-          className={cardDeleteButtonClassName}
-          type="button"
-          aria-label="удалить карточку"
-          onClick={handleCardDelete}
-        ></button>
-      </div>
-    </>
+    <div className="card">
+      <img
+        className="card__image"
+        src={card.link}
+        alt={card.name}
+        onClick={handleCardClick}
+      />
+      <h2 className="card__place-name">{card.name}</h2>
+      <button
+        className={cardLikeButtonClassName}
+        type="button"
+        aria-label="поставить лайк"
+        onClick={handleLikeClick}
+      ></button>
+      <span className="card__like-count">{card.likes.length}</span>
+      <button
+        className={cardDeleteButtonClassName}
+        type="button"
+        aria-label="удалить карточку"
+        onClick={handleCardDelete}
+      ></button>
+    </div>
   );
 }

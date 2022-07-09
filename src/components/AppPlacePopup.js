@@ -46,7 +46,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         maxLength="30"
         required
         onChange={handleCardTitle}
-        value={cardTitle ? cardTitle : ''}
+        value={cardTitle || ''}
       />
       <span className="popup__error" id="add-name-input-error"></span>
       <input
@@ -56,7 +56,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         placeholder="Ссылка на картинку"
         required
         onChange={handleCardLink}
-        value={cardLink ? cardLink : ''}
+        value={cardLink || ''}
       />
       <span className="popup__error" id="link-input-add-error"></span>
     </PopupWithForm>

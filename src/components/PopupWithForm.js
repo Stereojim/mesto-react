@@ -9,14 +9,13 @@ export default function PopupWithForm({
 }) {
   return (
     <div
-      className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}
+      className={`popup popup_type_${name} ${isOpen && "popup_opened"}`}
       name={name}
     >
       <div className="popup__container">
         <form
           className={`popup__form popup__form_type_${name}`}
           name="addPlaceForm"
-          noValidate
           onSubmit={onSubmit}
         >
           <button

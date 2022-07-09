@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
@@ -42,6 +42,7 @@ function App() {
           const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
           setCards(newCards);
         })
+        .catch((err) => console.log("засада: " + err))
       : api
           .deleteLike(card._id)
           .then((newCard) => {

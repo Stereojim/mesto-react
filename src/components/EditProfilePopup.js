@@ -15,7 +15,7 @@ const [description, setDescription] = useState('');
 useEffect(() => {
   setName(currentUser.name);
   setDescription(currentUser.about);
-}, [currentUser]); 
+}, [currentUser, isOpen]); 
 
 //использование данных инпута имени
 function handleUserName(event) {
@@ -51,11 +51,11 @@ function handleSubmit(e) {
               id="author-input"
               type="text"
               minLength="2"
-              maxLength="30"
+              maxLength="40"
               required
               placeholder="Имя"
               onChange={handleUserName}
-              value={name}
+              value={name || ''}
             
             />
             <span id="author-input-error" className="popup__error"></span>
@@ -72,7 +72,7 @@ function handleSubmit(e) {
               required
               placeholder="Профессия"
               onChange={handleUserDescription}
-              value={description}
+              value={description || ''}
            
             />
             <span id="profession-input-error" className="popup__error"></span>
