@@ -5,7 +5,7 @@
 This is a learning project from Yandex where students can handle with HTML, CSS, JavaScript and React.
 Mesto is a page is about creating cards with pictures and descriptions.
 
-You can visit working version on [MESTO](stereojim.github.io/mesto/).
+You can visit working version on [MESTO](https://stereojim.github.io/mesto-react/]).
 
 ## Technologies and languages
 
